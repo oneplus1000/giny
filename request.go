@@ -33,11 +33,11 @@ func ReadJSONFromBody(r *http.Request, obj interface{}) error {
 }
 
 //ReadJSON read json from http body
-func ReadJSON(ctx gin.Context, obj interface{}) error {
+func ReadJSON(ctx *gin.Context, obj interface{}) error {
 	return ReadJSONFromBody(ctx.Request, obj)
 }
 
 //ReadString read string fomr http body
-func ReadString(ctx gin.Context) (string, error) {
+func ReadString(ctx *gin.Context) (string, error) {
 	return ReadStringFromBody(ctx.Request)
 }
