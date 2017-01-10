@@ -26,7 +26,7 @@ func SetWriteLog(wl func(logtype int, msg string)) {
 	writeLog = wl
 }
 
-//WriteErrUnauthorized write unauthorize error
+//WriteErrUnauthorized write unauthorize error (401 Unauthorized )
 func WriteErrUnauthorized(ctx *gin.Context, err error) {
 	if writeLog != nil {
 		writeLog(LogTypeErr, fmt.Sprintf("%s\n", err.Error()))
@@ -34,12 +34,20 @@ func WriteErrUnauthorized(ctx *gin.Context, err error) {
 	ctx.String(http.StatusUnauthorized, err.Error())
 }
 
-//WriteErrInternalServerError write internal server error
+//WriteErrInternalServerError write internal server error (500 Internal Server Error)
 func WriteErrInternalServerError(ctx *gin.Context, err error) {
 	if writeLog != nil {
 		writeLog(LogTypeErr, fmt.Sprintf("%s\n", err.Error()))
 	}
 	ctx.String(http.StatusInternalServerError, err.Error())
+}
+
+//WriteErrBadRequest write bad reques error  (400 Bad Reques)
+func WriteErrBadRequest(ctx *gin.Context, err error) {
+	if writeLog != nil {
+		writeLog(LogTypeErr, fmt.Sprintf("%s\n", err.Error()))
+	}
+	ctx.String(http.StatusBadRequest, err.Error())
 }
 
 //WriteOK ok
