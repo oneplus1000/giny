@@ -26,6 +26,21 @@ func SetWriteLog(wl func(logtype int, msg string)) {
 	writeLog = wl
 }
 
+//LogTypeDesc แปลง logtype เป็น string
+func LogTypeDesc(logtype int) string {
+	switch logtype {
+	case LogTypeErr:
+		return "error"
+	case LogTypeWarn:
+		return "warn"
+	case LogTypeInfo:
+		return "info"
+	case LogTypeDebug:
+		return "debug"
+	}
+	return ""
+}
+
 //WriteErrUnauthorized write unauthorize error (401 Unauthorized )
 func WriteErrUnauthorized(ctx *gin.Context, err error) {
 	if writeLog != nil {
