@@ -7,40 +7,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//LogTypeErr  error
-const LogTypeErr = 1
-
-//LogTypeWarn warn
-const LogTypeWarn = 2
-
-//LogTypeInfo info
-const LogTypeInfo = 3
-
-//LogTypeDebug debuf
-const LogTypeDebug = 4
-
-var writeLog func(logtype int, msg string)
-
-//SetWriteLog set logger
-func SetWriteLog(wl func(logtype int, msg string)) {
-	writeLog = wl
-}
-
-//LogTypeDesc แปลง logtype เป็น string
-func LogTypeDesc(logtype int) string {
-	switch logtype {
-	case LogTypeErr:
-		return "error"
-	case LogTypeWarn:
-		return "warn"
-	case LogTypeInfo:
-		return "info"
-	case LogTypeDebug:
-		return "debug"
-	}
-	return ""
-}
-
 //WriteErrUnauthorized write unauthorize error (401 Unauthorized )
 func WriteErrUnauthorized(ctx *gin.Context, err error) {
 	if writeLog != nil {
