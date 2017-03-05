@@ -45,7 +45,7 @@ func LogErr(err error) {
 func LogErrf(err error, format string, a ...interface{}) {
 	msg := fmt.Sprintf(format, a)
 	msg += fmt.Sprintf("\n%+v", err)
-	writeLog(LogTypeErr, fmt.Sprintf("%s\n", err.Error()))
+	writeLog(LogTypeErr, fmt.Sprintf("%s\n", msg))
 }
 
 //LogWarn warn
