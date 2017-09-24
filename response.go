@@ -10,7 +10,7 @@ import (
 //WriteErrUnauthorized write unauthorize error (401 Unauthorized )
 func WriteErrUnauthorized(ctx *gin.Context, err error) {
 	if writeLog != nil {
-		writeLog(LogTypeErr, fmt.Sprintf("%s\n", err.Error()))
+		writeLog(LogTypeErr, fmt.Sprintf("%+v", err))
 	}
 	ctx.String(http.StatusUnauthorized, err.Error())
 }
@@ -18,7 +18,7 @@ func WriteErrUnauthorized(ctx *gin.Context, err error) {
 //WriteErrInternalServerError write internal server error (500 Internal Server Error)
 func WriteErrInternalServerError(ctx *gin.Context, err error) {
 	if writeLog != nil {
-		writeLog(LogTypeErr, fmt.Sprintf("%s\n", err.Error()))
+		writeLog(LogTypeErr, fmt.Sprintf("%+v", err))
 	}
 	ctx.String(http.StatusInternalServerError, err.Error())
 }
@@ -26,7 +26,7 @@ func WriteErrInternalServerError(ctx *gin.Context, err error) {
 //WriteErrBadRequest write bad reques error  (400 Bad Reques)
 func WriteErrBadRequest(ctx *gin.Context, err error) {
 	if writeLog != nil {
-		writeLog(LogTypeErr, fmt.Sprintf("%s\n", err.Error()))
+		writeLog(LogTypeErr, fmt.Sprintf("%+v\n", err))
 	}
 	ctx.String(http.StatusBadRequest, err.Error())
 }
