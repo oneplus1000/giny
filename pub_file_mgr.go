@@ -59,7 +59,7 @@ func (p *PubFileMgr) JsBundle(data interface{}, name string) template.HTML {
 		var buff bytes.Buffer
 		buff.WriteString(fmt.Sprintf("<!-- JsBundle %s -->\n", name))
 		for _, file := range files {
-			buff.WriteString(fmt.Sprintf("<script src=\"/%s/%s\" ></script>\n", p.pubVirPath, file))
+			buff.WriteString(fmt.Sprintf("<script src=\"/%s/%s?version=%s\" ></script>\n", p.pubVirPath, file,p.scriptVersion))
 		}
 		return template.HTML(buff.String())
 	}
@@ -72,7 +72,7 @@ func (p *PubFileMgr) CSSBundle(data interface{}, name string) template.HTML {
 		var buff bytes.Buffer
 		buff.WriteString(fmt.Sprintf("<!-- CssBundle %s -->\n", name))
 		for _, file := range files {
-			buff.WriteString(fmt.Sprintf("<link rel=\"stylesheet\"  href=\"/%s/%s\" />\n", p.pubVirPath, file))
+			buff.WriteString(fmt.Sprintf("<link rel=\"stylesheet\"  href=\"/%s/%s?version=%s\" />\n", p.pubVirPath, file,p.scriptVersion))
 		}
 		return template.HTML(buff.String())
 	}
